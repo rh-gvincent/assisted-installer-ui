@@ -10,29 +10,34 @@ import fs from "node:fs";
 function main() {
     const require = module.createRequire(import.meta.url);
     const pkgManifest = require('../package.json');
-    pkgManifest.files = ["src"];
+    pkgManifest.files = ["lib"];
     pkgManifest.exports["."] = {
-        import: './src/index.js',
-        require: './src/index.cjs'
+        import: './lib/index.js',
+        require: './lib/index.cjs'
     };
     pkgManifest.exports["./cim"] = {
-        import: './src/cim/index.js',
-        require: './src/cim/index.cjs'
+        import: './lib/cim/index.js',
+        require: './lib/cim/index.cjs'
     };
     pkgManifest.exports["./ocm"] = {
-        import: './src/ocm/index.js',
-        require: './src/ocm/index.cjs'
+        import: './lib/ocm/index.js',
+        require: './lib/ocm/index.cjs'
     };
-    pkgManifest.exports["./css"] = './src/style.css';
-    pkgManifest.main = './src/index.cjs';
-    pkgManifest.module = './src/index.js';
-    pkgManifest.types = './src/index.d.ts';
+    pkgManifest.exports["./css"] = './lib/style.css';
+    pkgManifest.main = './lib/index.cjs';
+    pkgManifest.module = './lib/index.js';
+    pkgManifest.types = './lib/index.d.ts';
 
+    delete pkgManifest.scripts;
     /**
      * The NEXT_VERSION variable can be used in CI/CD envs in order to populate
      * the version field in the new package.json
      */
     pkgManifest.version = process.env.NEXT_VERSION ?? '0.0.0';
+    if (!fs.existsSync('build')) {
+        fs.mkdirSync('build');
+    }
+
     fs.writeFileSync(
         'build/package.json',
         JSON.stringify(pkgManifest, null, 2)
