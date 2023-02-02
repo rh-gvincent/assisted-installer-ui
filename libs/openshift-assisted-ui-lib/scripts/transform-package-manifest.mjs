@@ -2,7 +2,7 @@ import module from "node:module";
 import fs from "node:fs";
 
 /**
- * This lifecycle script transforms the entry points in package.json
+ * This script transforms the entry points in package.json
  * in order to reference the built modules instead of the ones in
  * the source code. After the transformation is applied it
  * writes the new package.json into the 'build' folder.
@@ -16,12 +16,12 @@ function main() {
         require: './lib/index.cjs'
     };
     pkgManifest.exports["./cim"] = {
-        import: './lib/cim/index.js',
-        require: './lib/cim/index.cjs'
+        import: './lib/cim.js',
+        require: './lib/cim.cjs'
     };
     pkgManifest.exports["./ocm"] = {
-        import: './lib/ocm/index.js',
-        require: './lib/ocm/index.cjs'
+        import: './lib/ocm.js',
+        require: './lib/ocm.cjs'
     };
     pkgManifest.exports["./css"] = './lib/style.css';
     pkgManifest.main = './lib/index.cjs';
@@ -29,19 +29,19 @@ function main() {
     pkgManifest.types = './lib/index.d.ts';
 
     delete pkgManifest.scripts;
+    
     /**
-     * The NEXT_VERSION variable can be used in CI/CD envs in order to populate
+     * The NEXT_VERSION variable is used in CI/CD for populating
      * the version field in the new package.json
      */
     pkgManifest.version = process.env.NEXT_VERSION ?? '0.0.0';
+    
     if (!fs.existsSync('build')) {
         fs.mkdirSync('build');
     }
 
-    fs.writeFileSync(
-        'build/package.json',
-        JSON.stringify(pkgManifest, null, 2)
-    );
+    const json = JSON.stringify(pkgManifest, null, 2);
+    fs.writeFileSync('build/package.json', json);
 }
 
 main(process.argv.slice(1));
