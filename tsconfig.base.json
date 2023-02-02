@@ -22,12 +22,4 @@
     "target": "ESNext",
     "useDefineForClassFields": true
   },
-  "include": [
-    "env.d.ts"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
 }

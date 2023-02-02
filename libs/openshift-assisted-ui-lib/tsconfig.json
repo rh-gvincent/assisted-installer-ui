@@ -1,7 +1,12 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
   },
-  "include": ["src", "env.d.ts"]
+  "include": [
+    "src/**/*"
+  ],
+  "references": [{
+    "path": "../../tsconfig.vite.json"
+  }]
 }
