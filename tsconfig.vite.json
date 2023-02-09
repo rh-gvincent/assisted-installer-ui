@@ -4,10 +4,13 @@
     "composite": true,
     "esModuleInterop": true,
     "module": "ESNext",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "resolveJsonModule": true
   },
   "include": [
-    "apps/**/vite.config.ts",
-    "libs/**/vite.config.ts"
+    "apps/*/package.json",
+    "apps/*/vite.config.ts",
+    "libs/*/package.json",
+    "libs/*/vite.config.ts",
   ]
 }
