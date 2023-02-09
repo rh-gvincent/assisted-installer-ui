@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@openshift-console/dynamic-plugin-sdk": "0.0.3",
     "@patternfly/patternfly": "^4.222.4",
     "@patternfly/react-code-editor": "^4.82.82",
     "@patternfly/react-core": "^4.168.8",
@@ -8,10 +9,9 @@
     "@patternfly/react-table": "^4.37.8",
     "@patternfly/react-tokens": "^4.94.3",
     "@redux-devtools/extension": "^3.2.3",
-    "@openshift-console/dynamic-plugin-sdk": "0.0.3",
     "@reduxjs/toolkit": "^1.9.1",
     "@sentry/browser": "^5.9 || ^6",
-    "axios": ">=0.23.0 <2.0.0",
+    "axios": ">=0.22.0 <1.0.0",
     "i18next": "^20.4 || ^21",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-parser": "^3.3",
