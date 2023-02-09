@@ -29,6 +29,7 @@ gen
 .editorconfig
 .gitattributes
 .DS_Store
+vite.config.?s.timestamp-*.mjs
 
 # ignored apps
 apps/*
