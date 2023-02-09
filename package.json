@@ -1,6 +1,5 @@
 {
   "devDependencies": {
-    "@redux-devtools/extension": "^3.2.3",
     "@types/node": "^16",
     "@types/react": "^17",
     "@types/react-dom": "^17",
@@ -29,7 +28,6 @@
   "version": "0.0.0",
   "workspaces": [
     "apps/*",
-    "libs/*",
-    "locales"
+    "libs/*"
   ]
 }

@@ -43,6 +43,7 @@
     ".": "./src/index.ts",
     "./cim": "./src/cim/index.ts",
     "./ocm": "./src/ocm/index.ts"
+    "./locales/*": "./locales/*",
   },
   "keywords": [
     "react",

@@ -5,6 +5,7 @@
   },
   "include": [
     "src/**/*"
+    "locales/**/*"
   ],
   "references": [{
     "path": "../../tsconfig.vite.json"
