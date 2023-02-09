@@ -1,8 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { en as enTranslation } from '@openshift-assisted/locales/en';
+import translation from 'openshift-assisted-ui-lib/locales/en/translation.json';
 
-const dateTimeFormatter = new Intl.DateTimeFormat({
+const dateTimeFormatter = new Intl.DateTimeFormat(navigator.language, {
   month: 'short',
   day: 'numeric',
   hour: 'numeric',
@@ -14,7 +14,7 @@ void i18n.use(initReactI18next).init({
   lng: 'en',
   resources: {
     en: {
-      translation: enTranslation,
+      translation,
     },
   },
   supportedLngs: ['en'],
