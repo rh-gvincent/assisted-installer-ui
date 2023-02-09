@@ -1,45 +1,52 @@
-import module from "node:module";
 import fs from "node:fs";
 
+function loadJSON(path) {
+    return JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
+}
+
 /**
- * This script transforms the entry points in package.json
- * in order to reference the built modules instead of the ones in
- * the source code. After the transformation is applied it
- * writes the new package.json into the 'build' folder.
+ * Transforms the entry points in the `package.json` in order to reference the transpiled
+ * modules instead of the ones in the source code and removes the following fields:
+ * `dependencies`, `devDependencies`, `scripts`
+ * @param {import("../package.json")} pkg 
+ */
+function transform(pkg) {
+    pkg.exports["./cim"] = {
+        types: "./lib/cim/index.d.ts",
+        import: './lib/cim/index.js',
+    };
+    pkg.exports["./css"] = './lib/style.css';
+    pkg.exports["./locales/*"] = "./locales/*";
+    pkg.exports["./ocm"] = {
+        types: "./lib/ocm/index.d.ts",
+        import: './lib/ocm/index.js',
+    };
+    pkg.files = ["lib", "locales"];
+
+    // Dependencies are embedded, so no need to install them.
+    delete pkg.dependencies;
+    // DevDeps are never installed in production.
+    delete pkg.devDependencies;
+    // Currently the scripts are not needed in the production manifest.
+    delete pkg.scripts;
+    
+    // Use The NEXT_VERSION variable in order to populate the version field in CI/CD environments.
+    pkg.version = process.env.NEXT_VERSION ?? '0.0.0';
+}
+
+/**
+ * Reads the `package.json` and overwrites its entripoints.
+ * After the transformation is applied it writes the new `package.json` into the `build` folder.
  */
 function main() {
-    const require = module.createRequire(import.meta.url);
-    const pkgManifest = require('../package.json');
-    pkgManifest.files = ["lib"];
-    pkgManifest.exports["."] = {
-        import: './lib/index.js',
-        require: './lib/index.cjs'
-    };
-    pkgManifest.exports["./cim"] = {
-        import: './lib/cim.js',
-        require: './lib/cim.cjs'
-    };
-    pkgManifest.exports["./ocm"] = {
-        import: './lib/ocm.js',
-        require: './lib/ocm.cjs'
-    };
-    pkgManifest.exports["./css"] = './lib/style.css';
-    pkgManifest.main = './lib/index.cjs';
-    pkgManifest.module = './lib/index.js';
-    pkgManifest.types = './lib/index.d.ts';
-
-    delete pkgManifest.scripts;
-    
-    /**
-     * The NEXT_VERSION variable is used in CI/CD for populating
-     * the version field in the new package.json
-     */
-    pkgManifest.version = process.env.NEXT_VERSION ?? '0.0.0';
+    const pkgManifest = loadJSON("../package.json");
+    transform(pkgManifest);
     
     if (!fs.existsSync('build')) {
         fs.mkdirSync('build');
     }
 
+    fs.cpSync('locales', 'build/locales', { recursive: true });
     const json = JSON.stringify(pkgManifest, null, 2);
     fs.writeFileSync('build/package.json', json);
 }

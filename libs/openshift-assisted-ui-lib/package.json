@@ -41,10 +41,15 @@
     "yarn": ">=1.22 <2"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./cim": "./src/cim/index.ts",
-    "./ocm": "./src/ocm/index.ts"
+    "./cim": {
+      "types": "./src/cim/index.ts",
+      "default": "./src/cim/index.ts"
+    },
     "./locales/*": "./locales/*",
+    "./ocm": {
+      "types": "./src/ocm/index.ts",
+      "default": "./src/ocm/index.ts"
+    }
   },
   "keywords": [
     "react",
@@ -55,8 +60,6 @@
     "library"
   ],
   "license": "Apache-2.0",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
   "name": "openshift-assisted-ui-lib",
   "peerDependencies": {
     "@openshift-console/dynamic-plugin-sdk": "0.0.3",
@@ -92,6 +95,8 @@
     "prebuild:watch": "node scripts/transform-package-manifest.mjs",
     "build:watch": "vite build -c vite.config.ts --watch",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./src/index.ts",
+    "check:circular:build:ocm": "dpdm --warning false --tree false --exit-code circular:1 ./build/lib/ocm/index.js",
+    "check:circular:build:cim": "dpdm --warning false --tree false --exit-code circular:1 ./build/lib/cim/index.js",
     "tsc": "tsc"
   },
   "type": "module",

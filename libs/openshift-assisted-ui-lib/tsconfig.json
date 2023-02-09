@@ -2,9 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
+    "noEmit": false,
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
     "locales/**/*"
   ],
   "references": [{
