@@ -1,2 +1,7 @@
-export * as CIM from './cim';
-export * as OCM from './ocm';
+import * as CIM from './cim';
+import * as OCM from './ocm';
+
+export {
+    CIM,
+    OCM,
+}
