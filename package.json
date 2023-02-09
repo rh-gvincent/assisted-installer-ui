@@ -12,6 +12,10 @@
     "vite-plugin-dts": "^1.7.2",
     "zx": "^7.1.1"
   },
+  "engines": {
+    "node": ">=16.19",
+    "yarn": ">=1.22 <2"
+  },
   "license": "Apache-2.0",
   "name": "assisted-installer-ui",
   "private": true,
