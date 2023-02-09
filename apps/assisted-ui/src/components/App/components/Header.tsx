@@ -1,4 +1,3 @@
-import React from 'react';
 import { Constants } from 'openshift-assisted-ui-lib/ocm';
 import { Brand, PageHeader, PageHeaderTools, Button, ButtonVariant } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';

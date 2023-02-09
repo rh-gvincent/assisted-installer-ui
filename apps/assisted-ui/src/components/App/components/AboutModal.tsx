@@ -1,4 +1,5 @@
-import React from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   Button,
   AboutModal as PFAboutModal,
@@ -10,7 +11,7 @@ import { GIT_SHA, VERSION, SERVICE_LABELS, IMAGE_REPO } from '../../../config.js
 import redHatLogo from '../../../images/Logo-Red_Hat-OpenShift_Container_Platform-B-Reverse-RGB.png';
 
 export const AboutModalButton: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => setIsModalOpen(false);
   const handleClick = () => setIsModalOpen(true);
   return (
@@ -29,12 +30,12 @@ type AboutModalProps = {
 };
 
 const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
-  const [{ versions, releaseTag }, setVersions] = React.useState<ListVersions>({
+  const [{ versions, releaseTag }, setVersions] = useState<ListVersions>({
     versions: {},
     releaseTag: undefined,
   });
 
-  const fetchData = React.useCallback(async () => {
+  const fetchData = useCallback(async () => {
     try {
       const { data } = await Services.APIs.ComponentVersionsAPI.list();
       setVersions(data);
@@ -43,7 +44,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
     }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpen) {
       void fetchData();
     }
