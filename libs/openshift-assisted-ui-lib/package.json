@@ -26,9 +26,9 @@
     "@types/humanize-plus": "^1.8.0",
     "@types/js-yaml": "^4.0.1",
     "@types/lodash": "^4.14.121",
-    "@types/react": "^17",
+    "@types/react": "^18",
     "@types/react-autosuggest": "^10.1.5",
-    "@types/react-dom": "^17",
+    "@types/react-dom": "^18",
     "@types/react-measure": "^2.0.8",
     "@types/react-redux": "^7.1.7",
     "@types/react-router-dom": "^5.3.0",
@@ -60,6 +60,7 @@
     "library"
   ],
   "license": "Apache-2.0",
+  "main": "./src/index.ts",
   "name": "openshift-assisted-ui-lib",
   "peerDependencies": {
     "@openshift-console/dynamic-plugin-sdk": "0.0.3",

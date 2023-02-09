@@ -1,7 +1,5 @@
 {
   "devDependencies": {
-    "@types/react": "^17",
-    "@types/react-dom": "^17",
     "@vitejs/plugin-react-swc": "^3.0.1",
     "dpdm": "^3.10.0",
     "sass": "^1.57.1",
@@ -20,8 +18,8 @@
   "name": "assisted-installer-ui",
   "private": true,
   "resolutions": {
-    "@types/react": "17.0.2",
-    "@types/react-dom": "17.0.2"
+    "@types/react": "^18",
+    "@types/react-dom": "^18"
   },
   "scripts": {
     "build:libs/openshift-assisted-ui-lib": "yarn workspace openshift-assisted-ui-lib run build",
