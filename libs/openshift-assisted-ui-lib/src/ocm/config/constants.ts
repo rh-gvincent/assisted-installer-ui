@@ -17,11 +17,11 @@ export const getBasePermissions = (
   }
 
   const basePermissions = { isViewerMode: false };
-  if (!import.meta.env.VITE_APP_CLUSTER_PERMISSIONS) {
+  if (!process.env.VITE_APP_CLUSTER_PERMISSIONS) {
     return basePermissions;
   }
   const ocmPermissions = JSON.parse(
-    import.meta.env.VITE_APP_CLUSTER_PERMISSIONS,
+    process.env.VITE_APP_CLUSTER_PERMISSIONS,
   ) as AssistedInstallerOCMPermissionTypesListType;
 
   return {
