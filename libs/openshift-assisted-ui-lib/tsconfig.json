@@ -1,14 +1,12 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@tsconfig/vite-react",
   "compilerOptions": {
     "composite": true,
+    "esModuleInterop": true,
     "noEmit": false,
   },
   "include": [
     "src/**/*",
     "locales/**/*"
-  ],
-  "references": [{
-    "path": "../../tsconfig.vite.json"
-  }]
+  ]
 }

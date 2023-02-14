@@ -1,5 +1,5 @@
 import React from 'react';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import { IRow, IRowData } from '@patternfly/react-table';
 import { Link } from 'react-router-dom';
 import { TFunction } from 'i18next';

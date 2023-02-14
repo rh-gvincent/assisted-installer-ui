@@ -26,9 +26,9 @@
     "@types/humanize-plus": "^1.8.0",
     "@types/js-yaml": "^4.0.1",
     "@types/lodash": "^4.14.121",
-    "@types/react": "^18",
+    "@types/react": "<17.0.30",
     "@types/react-autosuggest": "^10.1.5",
-    "@types/react-dom": "^18",
+    "@types/react-dom": "<17.0.30",
     "@types/react-measure": "^2.0.8",
     "@types/react-redux": "^7.1.7",
     "@types/react-router-dom": "^5.3.0",
@@ -40,22 +40,8 @@
     "node": ">=12.22",
     "yarn": ">=1.22 <2"
   },
-  "exports": {
-    ".": "./src/index.ts",
-    "./cim": "./src/cim/index.ts",
-    "./ocm": "./src/ocm/index.ts",
-    "./locales/*": "./locales/*"
-  },
-  "keywords": [
-    "react",
-    "facet-lib",
-    "openshift",
-    "assisted-ui",
-    "assisted-ui-lib",
-    "library"
-  ],
   "license": "Apache-2.0",
-  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "name": "openshift-assisted-ui-lib",
   "peerDependencies": {
     "@openshift-console/dynamic-plugin-sdk": "0.0.3",
@@ -67,7 +53,7 @@
     "@patternfly/react-tokens": "^4.94.3",
     "@reduxjs/toolkit": "^1.9.1",
     "@sentry/browser": "^5.9 || ^6",
-    "axios": ">=0.23.0 <2.0.0",
+    "axios": ">=0.22.0 <1.0.0",
     "i18next": "^20.4 || ^21",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-parser": "^3.3",
@@ -92,5 +78,5 @@
     "build:watch": "vite build -c vite.config.ts --watch",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./src/index.ts"
   },
-  "version": "0.0.0"
+  "version": "1.0.0"
 }

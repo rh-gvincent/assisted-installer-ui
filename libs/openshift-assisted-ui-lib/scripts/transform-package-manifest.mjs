@@ -11,13 +11,26 @@ function loadJSON(path) {
  * @param {import("../package.json")} pkg 
  */
 function transform(pkg) {
-    pkg.type = "module";
-    pkg.main = "./lib/index.js";
-    pkg.exports["./cim"] = './lib/cim/index.js';
-    pkg.exports["./ocm"] = './lib/ocm/index.js';
-    pkg.exports["./locales/*"] = "./locales/*";
-    pkg.exports["./index.css"] = './lib/style.css';
+    // Use The NEXT_VERSION variable in order to populate the version field in CI/CD environments.
+    pkg.exports = {
+        ".": "./lib/index.mjs",
+        "./cim": './lib/cim/index.mjs',
+        "./ocm": './lib/ocm/index.mjs',
+        "./locales/*": "./locales/*",
+        "./index.css": './lib/style.css',
+    }
+    pkg.keywords = [
+        pkg.name,
+        "assisted-ui",
+        "assisted-ui-lib",
+        "facet-lib",
+        "library",
+        "openshift",
+        "react",
+    ]
     pkg.files = ["lib", "locales"];
+    pkg.main = "./lib/index.mjs";
+    pkg.type = "module";
     pkg.typesVersions = {
         "*": {
             "cim": [
@@ -28,6 +41,7 @@ function transform(pkg) {
             ]
         }
     },
+    pkg.version = process.env.NEXT_VERSION ?? '0.0.0';
 
     // Dependencies are embedded, so no need to install them.
     delete pkg.dependencies;
@@ -36,8 +50,6 @@ function transform(pkg) {
     // Currently the scripts are not needed in the production manifest.
     delete pkg.scripts;
     
-    // Use The NEXT_VERSION variable in order to populate the version field in CI/CD environments.
-    pkg.version = process.env.NEXT_VERSION ?? '0.0.0';
 }
 
 /**
@@ -45,15 +57,15 @@ function transform(pkg) {
  * After the transformation is applied it writes the new `package.json` into the `build` folder.
  */
 function main() {
-    const pkgManifest = loadJSON("../package.json");
-    transform(pkgManifest);
+    const pkg = loadJSON("../package.json");
+    transform(pkg);
     
     if (!fs.existsSync('build')) {
         fs.mkdirSync('build');
     }
 
     fs.cpSync('locales', 'build/locales', { recursive: true });
-    const json = JSON.stringify(pkgManifest, null, 2);
+    const json = JSON.stringify(pkg, null, 2);
     fs.writeFileSync('build/package.json', json);
 }
 

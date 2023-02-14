@@ -1,15 +1,9 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "moduleResolution": "Node16"
-  },
+  "extends": "@tsconfig/vite-react",
   "include": [
     "src/**/*"
   ],
   "references": [
-    {
-      "path": "../../tsconfig.vite.json"
-    },
     {
       "path": "../../libs/openshift-assisted-ui-lib"
     }
