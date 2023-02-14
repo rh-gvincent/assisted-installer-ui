@@ -9,8 +9,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        'cim/index': path.resolve(pkgManifest.exports["./cim"].default),
-        'ocm/index': path.resolve(pkgManifest.exports["./ocm"].default),
+        'index': path.resolve(pkgManifest.exports["."]),
+        'cim/index': path.resolve(pkgManifest.exports["./cim"]),
+        'ocm/index': path.resolve(pkgManifest.exports["./ocm"]),
       },
       formats: ['es'],
     },

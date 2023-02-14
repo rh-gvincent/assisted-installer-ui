@@ -11,17 +11,23 @@ function loadJSON(path) {
  * @param {import("../package.json")} pkg 
  */
 function transform(pkg) {
-    pkg.exports["./cim"] = {
-        types: "./lib/cim/index.d.ts",
-        import: './lib/cim/index.js',
-    };
-    pkg.exports["./css"] = './lib/style.css';
+    pkg.type = "module";
+    pkg.main = "./lib/index.js";
+    pkg.exports["./cim"] = './lib/cim/index.js';
+    pkg.exports["./ocm"] = './lib/ocm/index.js';
     pkg.exports["./locales/*"] = "./locales/*";
-    pkg.exports["./ocm"] = {
-        types: "./lib/ocm/index.d.ts",
-        import: './lib/ocm/index.js',
-    };
+    pkg.exports["./index.css"] = './lib/style.css';
     pkg.files = ["lib", "locales"];
+    pkg.typesVersions = {
+        "*": {
+            "cim": [
+                "./lib/cim/index.d.ts"
+            ],
+            "ocm": [
+                "./lib/ocm/index.d.ts"
+            ]
+        }
+    },
 
     // Dependencies are embedded, so no need to install them.
     delete pkg.dependencies;
