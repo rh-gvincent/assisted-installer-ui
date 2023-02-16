@@ -105,6 +105,7 @@
     "clean": "rm -rf node_modules build",
     "build": "vite build -c vite.config.ts",
     "build:watch": "vite build -c vite.config.ts --watch",
+    "build:esbuild": "node scripts/esbuild/cli.mjs",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./src/index.ts"
   },
   "version": "1.0.0"
