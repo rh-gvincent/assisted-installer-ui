@@ -41,7 +41,38 @@
     "yarn": ">=1.22 <2"
   },
   "license": "Apache-2.0",
-  "types": "./src/index.ts",
+  "keywords": [
+    "assisted-ui",
+    "assisted-ui-lib",
+    "facet-lib",
+    "library",
+    "openshift",
+    "react"
+  ],
+  "typesVersions": {
+    "*": {
+      "cim": [
+        "./build/cim/index.d.ts"
+      ],
+      "ocm": [
+        "./build/ocm/index.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": ["./build/index.js", "./src/index.ts"],
+    "./cim": ["./build/cim/index.js", "./src/cim/index.ts"],
+    "./ocm": ["./build/ocm/index.js", "./src/ocm/index.ts"],
+    "./locales/*": "./locales/*",
+    "./index.css": "./build/style.css"
+  },
+  "main": "./build/index.js",
+  "source": "./src/index.ts",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build",
+    "locales"
+  ],
   "name": "openshift-assisted-ui-lib",
   "peerDependencies": {
     "@openshift-console/dynamic-plugin-sdk": "0.0.3",
@@ -73,8 +104,6 @@
   "scripts": {
     "clean": "rm -rf node_modules build",
     "build": "vite build -c vite.config.ts",
-    "postbuild": "node scripts/transform-package-manifest.mjs",
-    "prebuild:watch": "node scripts/transform-package-manifest.mjs",
     "build:watch": "vite build -c vite.config.ts --watch",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./src/index.ts"
   },
