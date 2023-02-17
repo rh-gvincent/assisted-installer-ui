@@ -32,7 +32,7 @@
     "build:apps/assisted-ui": "yarn workspace assisted-ui run build",
     "preview:apps/assisted-ui": "yarn workspace assisted-ui run preview",
     "serve:apps/assisted-ui": "yarn workspace assisted-ui serve",
-    "clean": "rm -rf {apps,libs}/*/{node_modules,build} node_modules",
+    "clean": "rm -rf {apps,libs}/*/{node_modules,build,dist} node_modules",
     "update-api": "scripts/update-api.sh",
     "i18n": "scripts/i18n.sh"
   },
