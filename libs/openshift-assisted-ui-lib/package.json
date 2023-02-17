@@ -59,7 +59,7 @@
       "require": "./build/ocm/index.js"
     },
     "./locales/*": "./locales/*",
-    "./index.css": "./build/style.css"
+    "./index.css": "./build/index.css"
   },
   "files": [
     "build",
@@ -107,7 +107,8 @@
     "clean": "rm -rf node_modules build",
     "build": "vite build -c vite.config.ts --mode development",
     "build:watch": "vite build -c vite.config.ts --watch --mode development",
-    "build:esbuild": "node scripts/esbuild/cli.mjs",
+    "build:esbuild": "node scripts/esbuild/cli.js",
+    "build:watch:esbuild": "node ./scripts/esbuild/cli.js watch",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./src/index.ts"
   },
   "types": "./build/index.d.ts",

@@ -1535,15 +1535,6 @@ esbuild-openbsd-64@0.14.54:
   resolved "https://registry.yarnpkg.com/esbuild-openbsd-64/-/esbuild-openbsd-64-0.14.54.tgz#db4c8495287a350a6790de22edea247a57c5d47b"
   integrity sha512-Qyk7ikT2o7Wu76UsvvDS5q0amJvmRzDyVlL0qf5VLsLchjCa1+IAvd8kTBgUxD7VBUUVgItLkk609ZHUc1oCaw==
 
-esbuild-plugin-copy@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/esbuild-plugin-copy/-/esbuild-plugin-copy-2.0.2.tgz#3c215c421b35a4e48a3b3c5362e75a95602d9c4f"
-  integrity sha512-HlDgkHXagBCwaoB8tlQFeH08/i5a2ey6Pc26annV1YcG5CkAHzzRzmCwp3wdi5KHI//HVUgipS+Zsy2tQmn9gQ==
-  dependencies:
-    chalk "^4.1.2"
-    fs-extra "^10.0.1"
-    globby "^11.0.3"
-
 esbuild-plugin-d.ts@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/esbuild-plugin-d.ts/-/esbuild-plugin-d.ts-1.1.0.tgz#4dd1f930d0e3bc3275260219686c40345d4d935e"
@@ -1831,7 +1822,7 @@ from@~0:
   resolved "https://registry.yarnpkg.com/from/-/from-0.1.7.tgz#83c60afc58b9c56997007ed1a768b3ab303a44fe"
   integrity sha512-twe20eF1OxVxp/ML/kq2p1uc6KvFK/+vs8WjEbeKmV2He22MKm7YF2ANIt+EOqhJ5L3K/SuuPhk0hWQDjOM23g==
 
-fs-extra@^10.0.1, fs-extra@^10.1.0:
+fs-extra@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.1.0.tgz#02873cfbc4084dde127eaa5f9905eef2325d1abf"
   integrity sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==
