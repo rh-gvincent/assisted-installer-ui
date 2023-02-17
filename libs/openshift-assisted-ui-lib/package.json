@@ -1,4 +1,9 @@
 {
+  "ai:sources": {
+    "default": "./src/index.ts",
+    "cim": "./src/cim/index.ts",
+    "ocm": "./src/ocm/index.ts"
+  },
   "dependencies": {
     "axios-case-converter": "^0.11.1",
     "cidr-tools": "^4.3.0",
@@ -40,7 +45,26 @@
     "node": ">=12.22",
     "yarn": ">=1.22 <2"
   },
-  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./build/index.js"
+    },
+    "./cim": {
+      "import": "./src/cim/index.ts",
+      "require": "./build/cim/index.js"
+    },
+    "./ocm": {
+      "import": "./src/ocm/index.ts",
+      "require": "./build/ocm/index.js"
+    },
+    "./locales/*": "./locales/*",
+    "./index.css": "./build/style.css"
+  },
+  "files": [
+    "build",
+    "locales"
+  ],
   "keywords": [
     "assisted-ui",
     "assisted-ui-lib",
@@ -49,30 +73,8 @@
     "openshift",
     "react"
   ],
-  "typesVersions": {
-    "*": {
-      "cim": [
-        "./build/cim/index.d.ts"
-      ],
-      "ocm": [
-        "./build/ocm/index.d.ts"
-      ]
-    }
-  },
-  "exports": {
-    ".": ["./build/index.js", "./src/index.ts"],
-    "./cim": ["./build/cim/index.js", "./src/cim/index.ts"],
-    "./ocm": ["./build/ocm/index.js", "./src/ocm/index.ts"],
-    "./locales/*": "./locales/*",
-    "./index.css": "./build/style.css"
-  },
+  "license": "Apache-2.0",
   "main": "./build/index.js",
-  "source": "./src/index.ts",
-  "types": "./build/index.d.ts",
-  "files": [
-    "build",
-    "locales"
-  ],
   "name": "openshift-assisted-ui-lib",
   "peerDependencies": {
     "@openshift-console/dynamic-plugin-sdk": "0.0.3",
@@ -103,10 +105,21 @@
   "repository": "openshift-assisted/assisted-ui-lib",
   "scripts": {
     "clean": "rm -rf node_modules build",
-    "build": "vite build -c vite.config.ts",
-    "build:watch": "vite build -c vite.config.ts --watch",
+    "build": "vite build -c vite.config.ts --mode development",
+    "build:watch": "vite build -c vite.config.ts --watch --mode development",
     "build:esbuild": "node scripts/esbuild/cli.mjs",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./src/index.ts"
+  },
+  "types": "./build/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "cim": [
+        "./build/cim/index.d.ts"
+      ],
+      "ocm": [
+        "./build/ocm/index.d.ts"
+      ]
+    }
   },
   "version": "1.0.0"
 }
