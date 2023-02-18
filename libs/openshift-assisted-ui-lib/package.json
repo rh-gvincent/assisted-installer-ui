@@ -46,20 +46,11 @@
     "yarn": ">=1.22 <2"
   },
   "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "require": "./build/index.js"
-    },
-    "./cim": {
-      "import": "./src/cim/index.ts",
-      "require": "./build/cim/index.js"
-    },
-    "./ocm": {
-      "import": "./src/ocm/index.ts",
-      "require": "./build/ocm/index.js"
-    },
-    "./locales/*": "./locales/*",
-    "./index.css": "./build/index.css"
+    ".": "./build/index.js",
+    "./index.css": "./build/index.css",
+    "./cim": "./build/cim/index.js",
+    "./ocm": "./build/ocm/index.js",
+    "./locales/*": "./locales/*"
   },
   "files": [
     "build",
@@ -74,7 +65,8 @@
     "react"
   ],
   "license": "Apache-2.0",
-  "main": "./build/index.js",
+  "main": "build/index.js",
+  "module": "build/index.js",
   "name": "openshift-assisted-ui-lib",
   "peerDependencies": {
     "@openshift-console/dynamic-plugin-sdk": "0.0.3",
@@ -111,7 +103,7 @@
     "build:watch:esbuild": "node ./scripts/esbuild/cli.js watch",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./src/index.ts"
   },
-  "types": "./build/index.d.ts",
+  "types": "build/index.d.ts",
   "typesVersions": {
     "*": {
       "cim": [
