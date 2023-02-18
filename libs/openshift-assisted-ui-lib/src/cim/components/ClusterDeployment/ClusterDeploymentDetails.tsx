@@ -19,7 +19,7 @@ import {
 } from '../../types';
 import ClusterDeploymentCredentials from './ClusterDeploymentCredentials';
 import { shouldShowClusterCredentials, shouldShowClusterInstallationProgress } from './helpers';
-import { EventsModalButton } from '../../../common/components/ui/eventsModal';
+import { EventsModalButton } from '../../../common/components/ui/EventsModal';
 import ClusterDeploymentDetailsTable from './ClusterDeploymentDetailsTable';
 import { FetchSecret } from './types';
 import { getClusterProperties, getConsoleUrl } from '../helpers/clusterDeployment';

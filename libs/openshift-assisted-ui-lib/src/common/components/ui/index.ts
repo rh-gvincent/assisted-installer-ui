@@ -7,7 +7,7 @@ export * from './table';
 export * from './RenderIf';
 export * from './SimpleDropdown';
 export * from './DetailList';
-export * from './eventsModal';
+export * from './EventsModal';
 export * from './PreviewBadge';
 
 export * from './utils';

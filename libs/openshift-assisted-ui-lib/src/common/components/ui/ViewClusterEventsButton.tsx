@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonVariant } from '@patternfly/react-core';
-import { EventsModalButton } from './eventsModal';
+import { EventsModalButton } from './EventsModal';
 import { MonitoringIcon } from '@patternfly/react-icons';
 import { Cluster } from '../../api';
 import { EventListFetchProps } from '../../types';
