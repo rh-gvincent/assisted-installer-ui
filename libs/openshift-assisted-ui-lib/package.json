@@ -94,6 +94,9 @@
     "uuid": "^8.1",
     "yup": "^0.28.3"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "openshift-assisted/assisted-ui-lib",
   "scripts": {
     "clean": "rm -rf node_modules build",
