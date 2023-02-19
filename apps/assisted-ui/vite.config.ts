@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), envVarsPrefix,);
   return {
     build: {
+      emptyOutDir: true,
       outDir: 'build',
       sourcemap: 'inline'
     },
