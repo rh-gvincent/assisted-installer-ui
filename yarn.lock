@@ -297,6 +297,9 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@openshift-assisted/locales@link:libs/locales":
+  version "1.0.0"
+
 "@openshift-console/dynamic-plugin-sdk@0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@openshift-console/dynamic-plugin-sdk/-/dynamic-plugin-sdk-0.0.3.tgz#9e30cba4c1bdb375a8cfd4ed5ad4136d597720ed"

@@ -1,11 +1,14 @@
 {
-  "extends": "@tsconfig/vite-react",
+  "extends": "@tsconfig/vite-react/tsconfig.json",
   "include": [
-    "src/**/*"
+    "src"
   ],
   "references": [
     {
       "path": "../../libs/openshift-assisted-ui-lib"
+    },
+    {
+      "path": "../../libs/locales"
     }
   ]
 }

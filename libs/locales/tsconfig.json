@@ -1,0 +1,13 @@
+{
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+  },
+  "files": [
+    "en/translation.json",
+    "ja/translation.json",
+    "ko/translation.json",
+    "zh/translation.json",
+  ]
+}
