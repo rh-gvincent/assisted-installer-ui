@@ -97,10 +97,8 @@
   "repository": "openshift-assisted/assisted-ui-lib",
   "scripts": {
     "clean": "rm -rf node_modules build",
-    "build": "vite build -c vite.config.ts --mode development",
-    "build:watch": "vite build -c vite.config.ts --watch --mode development",
-    "build:esbuild": "node scripts/esbuild/cli.js",
-    "build:watch:esbuild": "node ./scripts/esbuild/cli.js watch",
+    "build": "zx scripts/esbuild-cli.mjs -c esbuild.config.mjs",
+    "build:watch": "zx ./scripts/esbuild-cli.mjs -c esbuild.config.mjs --watch",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./src/index.ts"
   },
   "types": "build/index.d.ts",

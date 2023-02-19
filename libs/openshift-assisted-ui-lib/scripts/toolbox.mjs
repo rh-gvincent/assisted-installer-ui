@@ -1,39 +1,33 @@
-/// <reference types="node">
-
 import fs from 'node:fs';
-import url from 'node:url';
+import { createRequire } from 'node:module';
 import path from 'node:path';
-import glob from 'glob';
+import { globby } from 'zx';
 
-/**
- * @param {string} file - A path to a JSON file.
- * @returns {unknown}
- */
-export function loadJSON(file) {
-    const fileUrl = new URL(file, import.meta.url);
-    return JSON.parse(fs.readFileSync(fileUrl).toString());
-}
+const require = createRequire(import.meta.url);
+const pwd = process.cwd();
 
-/**
- * @param {string} globPattern
- * @param {string} sourcesRoot 
- * @param {string} importMetaUrl 
- * @returns 
- */
-export function genenrateEntriesFromSources(globPattern, sourcesRoot, importMetaUrl) {
-    return Object.fromEntries(
-		glob.sync(globPattern).map(file => {
-            // This remove `src/` and the file extension from each
-            // file, so e.g. src/nested/foo.js becomes nested/foo
-            const entryAlias = path.relative(
-                sourcesRoot,
-                file.slice(0, file.length - path.extname(file).length)
-            );
-            // This expands the relative paths to absolute paths, so e.g.
-            // src/nested/foo becomes /project/src/nested/foo.js
-            const filePath = url.fileURLToPath(new URL(file, importMetaUrl))
-            
-            return [entryAlias, filePath];
-        }),
-	);
-}
+export const packageJson = require(path.resolve(pwd, 'package.json'));
+
+export const tsconfigJson = require(path.resolve(pwd, 'tsconfig.json'));
+
+export const genenrateEntriesFromSources = (
+  globPattern = 'src/**/*',
+  sourcesRootDir = 'src'
+) => Object.fromEntries(
+  globby.globbySync(globPattern).map(file => {
+      // This remove `src/` and the file extension from each
+      // file, so e.g. src/nested/foo.js becomes nested/foo
+      const entryAlias = path.relative(
+      sourcesRootDir,
+      file.slice(0, file.length - path.extname(file).length)
+      );
+      // This expands the relative paths to absolute paths, so e.g.
+      // src/nested/foo becomes /project/src/nested/foo.js
+      const absolutePathToFile = path.resolve(file);
+      if (!fs.existsSync(absolutePathToFile)) {
+        throw new Error(`${absolutePathToFile} doesn't exist!`);
+      }
+      
+      return [entryAlias, absolutePathToFile];
+  }),
+);
