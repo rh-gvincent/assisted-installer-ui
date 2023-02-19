@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.2",
     "@tsconfig/vite-react": "^1.0.1",
     "@vitejs/plugin-react-swc": "^3.0.1",
     "dpdm": "^3.10.0",
