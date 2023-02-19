@@ -10,9 +10,11 @@ if [[ "$command" =~ ^(preview|serve)$ ]];then
 fi
 
 if [[ "$command" =~ ^(preview)$ ]] && [ ! -d  build ]; then
-    yarn build
-else
-  echo 'Previewing files using the existing '\''build'\'' directory'
+    if [ ! -d  build ]; then
+      yarn build
+    else
+      echo 'Previewing files using the existing '\''build'\'' directory'
+    fi
 fi
 
 yarn vite "$command" -c vite.config.ts
