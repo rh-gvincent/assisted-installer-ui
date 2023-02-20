@@ -2,6 +2,7 @@
   "extends": "../../node_modules/@tsconfig/vite-react/tsconfig.json",
   "compilerOptions": {
     "composite": true,
+    "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
     "jsx": "react",

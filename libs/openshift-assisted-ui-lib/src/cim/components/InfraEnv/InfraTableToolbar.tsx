@@ -20,6 +20,7 @@ import { Host, TableToolbar } from '../../../common';
 import { usePagination } from '../../../common/components/hosts/usePagination';
 import { useTranslation } from '../../../common/hooks/use-translation-wrapper';
 import { StatusCount } from '../Agent/tableUtils';
+import { SearchInputFieldProps } from '../../../common/components/ui/formik/types';
 
 const getStatusesForFiler = (statuses: HostStatus<string>) => {
   const filterStatuses: {
@@ -94,7 +95,7 @@ const InfraTableToolbar: React.FC<InfraTableToolbarProps> = ({
         <SearchInput
           placeholder={t('ai:Find by hostname')}
           value={hostnameFilter}
-          onChange={setHostnameFilter}
+          onChange={setHostnameFilter as unknown as SearchInputFieldProps['onChange']}
           onClear={() => setHostnameFilter(undefined)}
         />
       </ToolbarItem>
