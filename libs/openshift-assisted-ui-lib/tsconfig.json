@@ -4,6 +4,7 @@
     "composite": true,
     "declarationMap": true,
     "esModuleInterop": true,
+    "jsx": "react",
     "noEmit": false,
     "outDir": "build",
     "rootDir": "src"
