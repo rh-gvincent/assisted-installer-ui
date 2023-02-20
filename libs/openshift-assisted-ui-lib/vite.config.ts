@@ -4,17 +4,20 @@ import dts from 'vite-plugin-dts'
 import tsconfig from './tsconfig.json';
 import { genenrateEntriesFromSources } from './scripts/toolbox.mjs';
 
-const entry = genenrateEntriesFromSources(
-  'src/**/*.!(yaml)',
-  tsconfig.compilerOptions.rootDir,
-  import.meta.url
-);
+// Each source file becomes a separate chunk
+const entryPoints = genenrateEntriesFromSources('src/**/*.!(yaml)');
+// Generates only 3 chunks 
+// const entryPoints = [
+//   packageJson['ai:sources'].default,
+//   packageJson['ai:sources'].cim,
+//   packageJson['ai:sources'].ocm
+// ];
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   build: {
     emptyOutDir: true,
     lib: {
-      entry,
+      entry: entryPoints,
       formats: ['cjs'],
     },
     minify: false,    
@@ -25,15 +28,15 @@ export default defineConfig(({ mode }) => ({
         sourcemapExcludeSources: true,
       },
     },
-    sourcemap: mode === 'production' ? 'hidden' : true,
+    sourcemap: true,
   },
   plugins: [
     externalizeDeps({
-      deps: false,
+      deps: true,
       peerDeps: true,
     }),
     dts({
       skipDiagnostics: true,
     }),
   ],
-}));
+});
