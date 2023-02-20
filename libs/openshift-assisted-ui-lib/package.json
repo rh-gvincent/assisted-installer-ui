@@ -46,11 +46,19 @@
     "yarn": ">=1.22 <2"
   },
   "exports": {
-    ".": "./build/index.js",
+    ".": {
+      "production": "./build/index.js",
+      "development": "./src/index.ts"
+    },
     "./index.css": "./build/index.css",
-    "./cim": "./build/cim/index.js",
-    "./ocm": "./build/ocm/index.js",
-    "./locales/*": "./locales/*"
+    "./cim": {
+      "production": "./build/cim/index.js",
+      "development": "./src/cim/index.ts"
+    },
+    "./ocm": {
+      "production": "./build/ocm/index.js",
+      "development": "./src/ocm/index.ts"
+    }
   },
   "files": [
     "build",
