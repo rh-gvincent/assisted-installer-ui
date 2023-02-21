@@ -1,30 +1,22 @@
-import { defineConfig } from 'vite';
-import { externalizeDeps } from 'vite-plugin-externalize-deps';
-import dts from 'vite-plugin-dts'
-import tsconfig from './tsconfig.json';
-import { genenrateEntriesFromSources } from './scripts/toolbox.mjs';
-
-// Each source file becomes a separate chunk
-const entryPoints = genenrateEntriesFromSources('src/**/*.!(yaml)');
-// Generates only 3 chunks 
-// const entryPoints = [
-//   packageJson['ai:sources'].default,
-//   packageJson['ai:sources'].cim,
-//   packageJson['ai:sources'].ocm
-// ];
+import { defineConfig } from "vite";
+import { externalizeDeps } from "vite-plugin-externalize-deps";
+import dts from "vite-plugin-dts";
+import tsconfig from "./tsconfig.json";
+import renameNodeModules from "rollup-plugin-rename-node-modules";
 
 export default defineConfig({
   build: {
     emptyOutDir: true,
     lib: {
-      entry: entryPoints,
-      formats: ['cjs'],
+      entry: ["./src/index.ts", "./src/cim/index.ts", "./src/ocm/index.ts"],
+      formats: ["cjs"],
     },
-    minify: false,    
+    minify: false,
     outDir: tsconfig.compilerOptions.outDir,
     rollupOptions: {
       output: {
-        exports: 'named',
+        preserveModules: true,
+        preserveModulesRoot: "src",
         sourcemapExcludeSources: true,
       },
     },
@@ -32,11 +24,12 @@ export default defineConfig({
   },
   plugins: [
     externalizeDeps({
-      deps: true,
+      deps: false,
       peerDeps: true,
     }),
     dts({
       skipDiagnostics: true,
     }),
+    renameNodeModules("ext"),
   ],
 });

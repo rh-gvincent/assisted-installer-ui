@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cidrTools from 'cidr-tools';
+import { merge, overlap } from 'cidr-tools';
 import { NetworkFormProps, NetworkFormValues } from './types';
 import flattenDeep from 'lodash/flattenDeep';
 import xor from 'lodash/xor';
@@ -39,7 +39,7 @@ const NetworkForm: React.FC<NetworkFormProps> = ({ agents, onValuesChanged }) =>
   ]);
   const allIps: string[] = flattenDeep<string>(allIpsRaw);
 
-  const agentCIDRs = allIps.map((ip) => cidrTools.merge([ip][0]));
+  const agentCIDRs = allIps.map((ip) => merge([ip][0]));
 
   const cidrToAgentsMapping = agentCIDRs.reduce((acc, curr) => {
     acc[curr.toString()] = [];
@@ -48,7 +48,7 @@ const NetworkForm: React.FC<NetworkFormProps> = ({ agents, onValuesChanged }) =>
 
   agents.forEach((agent) => {
     agentCIDRs.forEach((cidr) => {
-      if (allIps.some((ipAddr) => cidrTools.overlap(ipAddr, cidr))) {
+      if (allIps.some((ipAddr) => overlap(ipAddr, cidr))) {
         cidrToAgentsMapping[cidr.toString()] = [
           ...(cidrToAgentsMapping[cidr.toString()] || []),
           agent.metadata?.uid || '',

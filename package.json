@@ -27,7 +27,7 @@
     "@types/react-dom": "<17.0.30"
   },
   "scripts": {
-    "build:libs/openshift-assisted-ui-lib": "yarn workspace openshift-assisted-ui-lib run build",
+    "build:libs/openshift-assisted-ui-lib": "yarn workspace openshift-assisted-ui-lib run build:vite",
     "tsc:libs/openshift-assisted-ui-lib": "yarn workspace openshift-assisted-ui-lib run tsc",
     "build:apps/assisted-ui": "yarn workspace assisted-ui run build",
     "preview:apps/assisted-ui": "yarn workspace assisted-ui run preview",
