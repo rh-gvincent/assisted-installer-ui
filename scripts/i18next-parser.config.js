@@ -1,12 +1,14 @@
-module.exports = {
+const defaultNS = process.env.TRANSLATION_NAMESPACE ?? 'translation';
+
+export default {
   contextSeparator: '_',
   createOldCatalogs: false,
   keySeparator: false,
   locales: ['en'],
-  defaultNS: process.env.TRANSLATION_NAMESPACE, // the default file for strings when using useTranslation, etc
+  defaultNS,
   namespaceSeparator: '~',
   reactNamespace: false,
   useKeysAsDefaultValue: true,
-  output: './locales/$LOCALE/translation.json',
+  output: `./libs/locales/lib/$LOCALE/${defaultNS}.json`,
   sort: true,
 };

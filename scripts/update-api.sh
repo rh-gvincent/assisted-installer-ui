@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 SWAGGER_FILE="$1"
 TYPES_FILE="$2"
