@@ -1,6 +1,6 @@
 {
   "name": "@openshift-assisted/locales",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Locales for the Assisted Installer UI library",
   "repository": {
     "directory": "libs/locales",
@@ -10,13 +10,16 @@
   "author": "Red Hat",
   "license": "Apache-2.0",
   "exports": {
-    "./*": "./lib/*"
+    "./en/translation.json": "./lib/en/translation.json",
+    "./ja/translation.json": "./lib/ja/translation.json",
+    "./ko/translation.json": "./lib/ko/translation.json",
+    "./zh/translation.json": "./lib/zh/translation.json"
   },
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "@tsconfig/recommended": "^1.0.2"
   },
   "type": "module"
 }
