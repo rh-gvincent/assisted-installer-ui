@@ -1,6 +1,6 @@
 {
   "name": "@openshift-assisted/locales",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Locales for the Assisted Installer UI library",
   "repository": {
     "directory": "libs/locales",
