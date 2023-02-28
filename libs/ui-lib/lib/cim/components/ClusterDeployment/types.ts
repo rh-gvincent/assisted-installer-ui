@@ -1,7 +1,8 @@
-import { K8sResourceCommon } from '@openshift-console/dynamic-plugin-sdk';
-import { ClusterDetailsValues } from '../../../common/components/clusterWizard/types';
-import { CpuArchitecture, NetworkConfigurationValues } from '../../../common/types/clusters';
-import {
+import type { K8sResourceCommon } from '@openshift-console/dynamic-plugin-sdk';
+import type { ClusterDetailsValues } from '../../../common/components/clusterWizard/types';
+import type { NetworkConfigurationValues } from '../../../common/types/clusters';
+import type { CpuArchitecture } from '../../../common/types/cpuArchitecture';
+import type {
   AgentK8sResource,
   ClusterDeploymentK8sResource,
   AgentClusterInstallK8sResource,

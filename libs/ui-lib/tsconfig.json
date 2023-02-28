@@ -1,16 +1,16 @@
 {
-  "extends": "@tsconfig/vite-react/tsconfig.json",
+  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
+    "allowJs": false,
     "composite": true,
     "declaration": true,
     "declarationMap": true,
-    "esModuleInterop": true,
     "jsx": "react",
-    "noEmit": false,
-    "outDir": "build",
-    "rootDir": "src"
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noEmit": false
   },
   "include": [
-    "src"
+    "lib"
   ]
 }

@@ -1,0 +1,5 @@
+lib/**/*.js
+lib/**/*.jsx
+lib/**/*.d.ts
+lib/**/*.map
+!lib/**/@types/**/*.d.ts

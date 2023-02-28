@@ -49,6 +49,7 @@ export const EVENTS_POLLING_INTERVAL = 10 * 1000;
 export const hostRoles = (t: TFunction): HostRole[] => [
   {
     value: 'auto-assign',
+    // @ts-ignore
     label: t('ai:Auto-assign'),
     description: t(
       'ai:A role will be chosen automatically based on detected hardware and network latency.',

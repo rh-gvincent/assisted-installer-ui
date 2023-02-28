@@ -185,6 +185,7 @@ const ClusterEventsToolbar: React.FC<ClustersListToolbarProps> = ({
       setFilters({
         ...filters,
         // eslint-disable-next-line
+        // @ts-ignore
         [typeId]: filters[typeId].filter((v: string) => v !== id),
       });
     } else {
