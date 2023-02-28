@@ -25,6 +25,7 @@ export const getNodePoolStatus = (
     return {
       type: 'pending',
       icon: <InProgressIcon />,
+      // @ts-ignore
       text: t('ai:Pending host assignment'),
     };
   }
