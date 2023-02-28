@@ -107,7 +107,7 @@
     "build": "tsc -b --verbose",
     "watch": "tsc -b --verbose --watch",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./lib/index.ts",
-    "clean": "rm -rf node_modules lib/**/*.js lib/**/*.map lib/**/*.d.ts && git restore lib/@types/"
+    "clean": "node scripts/clean.js"
   },
   "type": "module",
   "typesVersions": {
