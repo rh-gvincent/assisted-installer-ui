@@ -44,22 +44,26 @@
     "@types/react-tagsinput": "^3.19.7",
     "@types/uuid": "^8.0.0",
     "@types/yup": "^0.26.9",
+    "chokidar": "^3.5.3",
     "dpdm": "^3.10.0",
     "typescript": "^4.9.5"
   },
   "engines": {
-    "node": ">12.22"
+    "node": ">14"
   },
   "exports": {
-    ".": "./lib/index.js",
-    "./cim": "./lib/cim/index.js",
-    "./ocm": "./lib/ocm/index.js"
+    ".": "./build/cjs/index.js",
+    "./cim": "./build/cjs/cim/index.js",
+    "./ocm": "./build/cjs/ocm/index.js"
   },
-  "files": [
+  "xfiles": [
     "lib/**/*.js",
     "lib/**/*.js.map",
     "lib/**/*.d.ts",
     "lib/**/*.css"
+  ],
+  "files": [
+    "build"
   ],
   "keywords": [
     "assisted-ui",
@@ -104,19 +108,21 @@
     "url": "https://github.com/openshift-assisted/assisted-ui-lib.git"
   },
   "scripts": {
-    "build": "tsc -b --verbose",
-    "watch": "tsc -b --verbose --watch",
+    "build": "tsc -b --verbose tsconfig.cjs.json",
+    "build:esm": "node scripts/build-cli.mjs --format=esm --verbose",
+    "build:cjs": "node scripts/build-cli.mjs --format=cjs --verbose",
+    "watch": "node scripts/build-cli.mjs --format=cjs --verbose --watch",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./lib/index.ts",
-    "clean": "node scripts/clean.js"
+    "clean": "node scripts/clean.mjs"
   },
-  "type": "module",
+  "type": "commonjs",
   "typesVersions": {
     "*": {
       "cim": [
-        "./lib/cim/index.d.ts"
+        "./build/cjs/cim/index.d.ts"
       ],
       "ocm": [
-        "./lib/ocm/index.d.ts"
+        "./build/cjs/ocm/index.d.ts"
       ]
     }
   },

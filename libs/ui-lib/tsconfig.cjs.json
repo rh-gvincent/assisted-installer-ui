@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "build/cjs",
+    "rootDir": "lib",
+    "tsBuildInfoFile": ".cache/tsconfig.cjs.tsbuildinfo"
+  },
+  "display": "tsconfig.cjs.json"
+}

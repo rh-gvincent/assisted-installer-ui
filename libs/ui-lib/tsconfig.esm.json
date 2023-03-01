@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "outDir": "build/cjs",
+    "rootDir": "lib",
+    "tsBuildInfoFile": ".cache/tsconfig.esm.tsbuildinfo"
+  },
+  "display": "tsconfig.esm.json"
+}
