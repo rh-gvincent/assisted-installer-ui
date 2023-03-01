@@ -13,12 +13,13 @@ dist
 .idea
 
 # Misc
+.cache
+.tmp
+.temp
 .editorconfig
 .gitattributes
 .DS_Store
-.env
-.env.local
-.env.*.local
+.env*.local
 vite.config.?s.timestamp-*
 
 # Package managers
