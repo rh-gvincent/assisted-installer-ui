@@ -39,10 +39,10 @@ This project is a user interface backed by Assisted Installer API.
   - Environment variables:
 
   ```
-  REACT_APP_API_URL: required, URL of the BM Inventory
-  REACT_APP_CLUSTER_PERMISSIONS=JSON to pass in permission restrictions
+  AIUI_APP_API_URL: required, URL of the BM Inventory
+  AIUI_APP_CLUSTER_PERMISSIONS=JSON to pass in permission restrictions
     The JSON currently admits the `canEdit` parameter.
-    eg. REACT_APP_CLUSTER_PERMISSIONS={"canEdit": false}
+    eg. AIUI_APP_CLUSTER_PERMISSIONS={"canEdit": false}
 
   BROWSER: optional, locally installed browser used to open the web application in
   ```
@@ -50,13 +50,13 @@ This project is a user interface backed by Assisted Installer API.
   - Command:
 
   ```
-  REACT_APP_API_URL=[YOUR_ASSISTED-SERVICE_URL] yarn start
+  AIUI_APP_API_URL=[YOUR_ASSISTED-SERVICE_URL] yarn start
   ```
 
   - Example:
 
   ```
-  REACT_APP_API_URL=`minikube service assisted-service --url` BROWSER=chromium-browser yarn start
+  AIUI_APP_API_URL=`minikube service assisted-service --url` BROWSER=chromium-browser yarn start
   ```
 
 - Open the UI at `http://localhost:3000`
@@ -81,7 +81,7 @@ Optionally, set the configuration environment variables which you want to use
 Example:
 
 ```
-$ REACT_APP_API_URL='http://192.168.2.42:6008' yarn build
+$ AIUI_APP_API_URL='http://192.168.2.42:6008' yarn build
 ```
 
 ## Container image build
@@ -89,7 +89,7 @@ $ REACT_APP_API_URL='http://192.168.2.42:6008' yarn build
 You can build the container image by running:
 
 ```
-$ podman build -t quay.io/edge-infrastructure/assisted-installer-ui:latest . --build-arg REACT_APP_GIT_SHA="$(git rev-parse HEAD)" --build-arg REACT_APP_VERSION=latest
+$ podman build -t quay.io/edge-infrastructure/assisted-installer-ui:latest . --build-arg AIUI_APP_GIT_SHA="$(git rev-parse HEAD)" --build-arg AIUI_APP_VERSION=latest
 ```
 
 ## Available Scripts
