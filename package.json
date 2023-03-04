@@ -1,7 +1,7 @@
 {
   "description": "Assisted Installer UI monorepo",
   "devDependencies": {
-    "i18next": ">=19.8.3",
+    "i18next": "^20.4.0",
     "i18next-parser": "^3.3",
     "sw2dts": "^2.6.3",
     "typescript": "^4.9.3",

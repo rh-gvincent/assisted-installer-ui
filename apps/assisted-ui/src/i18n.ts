@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+// @ts-ignore
 import translation from '@openshift-assisted/locales/en/translation.json';
 
 const dateTimeFormatter = new Intl.DateTimeFormat('default', {
@@ -24,7 +25,7 @@ void i18n.use(initReactI18next).init({
   defaultNS: 'translation',
   nsSeparator: '~',
   keySeparator: false,
-  debug: false,
+  debug: true,
   interpolation: {
     format(value, format, lng) {
       if (format === 'number') {
