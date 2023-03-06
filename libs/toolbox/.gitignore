@@ -1,0 +1,7 @@
+/.cache
+/@types
+
+/lib/**/*.js
+/lib/**/*.d.ts
+/lib/**/*.map
+!/lib/@types/**/*.d.ts

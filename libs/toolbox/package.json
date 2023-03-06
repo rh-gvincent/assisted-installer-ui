@@ -1,0 +1,34 @@
+{
+  "bin": "./lib/main.js",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "lodash": "^4.17.21",
+    "zx": "^7.2.0"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.2",
+    "@types/node": "^18.14.6",
+    "typescript": "^4.9.5"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "lib/**/*.js"
+  ],
+  "type": "module",
+  "name": "@openshift-assisted/toolbox",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "libs/toolbox",
+    "type": "git",
+    "url": "https://github.com/openshift-assisted/toolbox.git"
+  },
+  "scripts": {
+    "build": "tsc -b --verbose",
+    "clean": "tsc -b --clean"
+  },
+  "version": "1.0.0-beta"
+}
