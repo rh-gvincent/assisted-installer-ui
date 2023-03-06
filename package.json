@@ -17,7 +17,7 @@
   },
   "scripts": {
     "clean": "rm -rf {apps,libs}/*/{node_modules,build,.cache} node_modules",
-    "update-api": "scripts/update-api.sh",
+    "update-api": "scripts/update-api.sh libs/ui-lib/lib/common/api/swagger.yaml libs/ui-lib/lib/common/api/types.ts",
     "i18n": "scripts/i18n.sh"
   },
   "type": "module",
