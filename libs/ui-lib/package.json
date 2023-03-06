@@ -1,10 +1,4 @@
 {
-  "ai:sources": {
-    "main": "lib/index.ts",
-    "cim": "lib/cim/index.ts",
-    "common": "lib/common/index.ts",
-    "ocm": "lib/ocm/index.ts"
-  },
   "dependencies": {
     "axios-case-converter": "^0.11.1",
     "camel-case": "^4.1.2",
@@ -29,12 +23,14 @@
   },
   "description": "React component library for the Assisted Installer UI",
   "devDependencies": {
+    "@openshift-assisted/toolbox": "workspace:*",
     "@tsconfig/recommended": "^1.0.2",
     "@types/file-saver": "^2.0.1",
     "@types/human-date": "^1.4.0",
     "@types/humanize-plus": "^1.8.0",
     "@types/js-yaml": "^4.0.1",
     "@types/lodash-es": "^4.17.6",
+    "@types/node": "^18.14.6",
     "@types/react": "<17.0.30",
     "@types/react-autosuggest": "^10.1.5",
     "@types/react-dom": "<17.0.30",
@@ -44,26 +40,33 @@
     "@types/react-tagsinput": "^3.19.7",
     "@types/uuid": "^8.0.0",
     "@types/yup": "^0.26.9",
-    "chokidar": "^3.5.3",
     "dpdm": "^3.10.0",
+    "rimraf": "^4.3.0",
     "typescript": "^4.9.5"
   },
   "engines": {
-    "node": ">14"
+    "node": ">=14"
   },
   "exports": {
-    ".": "./build/cjs/index.js",
-    "./cim": "./build/cjs/cim/index.js",
-    "./ocm": "./build/cjs/ocm/index.js"
+    ".": {
+      "development": "./lib/index.ts",
+      "types": "./@types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./cim": {
+      "development": "./lib/cim/index.ts",
+      "types": "./@types/cim/index.d.ts",
+      "default": "./lib/cim/index.js"
+    },
+    "./ocm": {
+      "development": "./lib/ocm/index.ts",
+      "types": "./@types/ocm/index.d.ts",
+      "default": "./lib/ocm/index.js"
+    }
   },
-  "xfiles": [
-    "lib/**/*.js",
-    "lib/**/*.js.map",
-    "lib/**/*.d.ts",
-    "lib/**/*.css"
-  ],
   "files": [
-    "build"
+    "lib",
+    "@types"
   ],
   "keywords": [
     "assisted-ui",
@@ -108,23 +111,21 @@
     "url": "https://github.com/openshift-assisted/assisted-ui-lib.git"
   },
   "scripts": {
-    "build": "tsc -b --verbose tsconfig.cjs.json",
-    "build:esm": "node scripts/build-cli.mjs --format=esm --verbose",
-    "build:cjs": "node scripts/build-cli.mjs --format=cjs --verbose",
-    "watch": "node scripts/build-cli.mjs --format=cjs --verbose --watch",
+    "build": "tsc --build --verbose",
+    "clean": "tsc --build --clean && yarn run rimraf @types .cache",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./lib/index.ts",
-    "clean": "node scripts/clean.mjs"
+    "yalc:push": "yalc push --changed",
+    "watch": "toolbox watch 'yarn tsc --build --verbose' 'yalc push --changed'"
   },
-  "type": "commonjs",
   "typesVersions": {
     "*": {
       "cim": [
-        "./build/cjs/cim/index.d.ts"
+        "./@types/cim/index.d.ts"
       ],
       "ocm": [
-        "./build/cjs/ocm/index.d.ts"
+        "./@types/ocm/index.d.ts"
       ]
     }
   },
-  "version": "0.0.0"
+  "version": "1.0.0-beta"
 }
