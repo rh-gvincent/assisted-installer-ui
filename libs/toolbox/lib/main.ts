@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import throttle from "lodash-es/throttle.js";
-import { argv, retry } from "zx";
+import { argv, chalk, ProcessOutput, retry } from "zx";
 import {
   ChokidarFSWatcher,
   ChokidarAllEventsListener
@@ -13,7 +13,8 @@ import {
   DELAY_BETWEEN_EXIT_ATTEMPTS,
   EC_MISSING_TOOL,
   THROTTLE_WAIT_MS
-} from "./constants";
+} from "./constants.js";
+import { error, warn } from "./logger.js";
 
 
 async function handleWatchCmd() {
@@ -21,11 +22,11 @@ async function handleWatchCmd() {
   const handleSIGINT = (job: Runnable, watcher: ChokidarFSWatcher) =>
   (signal: string) => {
     watcher.close().then(async () => {
-      console.log(`\n${signal} received. Stop watching files...`);
+      warn(`\n${signal} received. Stop watching files...`);
       if (job.isDone) {
         process.exit(EC_NORMAL);
       } else {
-        console.log('Waiting for the last job to finish...');
+        warn('Waiting for the last job to finish...');
         try {
           await retry(
             MAX_RETRIES_BEFORE_ABORT,
@@ -42,7 +43,13 @@ async function handleWatchCmd() {
 
   const handleChangeThrottled = (job: Runnable) =>
     throttle<ChokidarAllEventsListener>(
-      (_eventName, _path, _stats) => { if (job.isDone) void job.run(); },
+      (_eventName, _path, _stats) => {
+        if (job.isDone) {
+          job.run().catch((po: ProcessOutput) => {
+            warn(`The last job failed with exit code: ${po.exitCode}. Check its output above.`);
+          });
+        }
+      },
       THROTTLE_WAIT_MS,
       { trailing: true }
     );
@@ -64,7 +71,7 @@ async function main() {
       break;
   
     default:
-      console.error(`No tool called ${cmd} in this toolbox yet.`);
+      error(`No tool called ${cmd} in this toolbox yet.`);
       process.exit(EC_MISSING_TOOL);
   }
   

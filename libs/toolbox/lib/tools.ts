@@ -2,6 +2,7 @@ import { path } from "zx";
 import chokidar from "chokidar";
 import JobsRunner from "./jobs-runner.js";
 import type WatchToolOptions from "./@types/watch-tool-options";
+import { info } from "./logger.js";
 
 
 export async function watchTool(options: WatchToolOptions) {  
@@ -17,7 +18,7 @@ export async function watchTool(options: WatchToolOptions) {
     persistent: true,
     awaitWriteFinish: true
   });
-  console.log('Watching files in', path.resolve(sourcesDir));
+  info('Watching files in', path.resolve(sourcesDir));
   
   let job = new JobsRunner(jobs);
   process.on("SIGINT", onSIGINT(job, watcher));
