@@ -12,6 +12,7 @@
     "moduleResolution": "node",
     "noEmit": false,
     "noEmitOnError": true,
+    "outDir": "build",
     "rootDir": "lib",
     "sourceMap": true,
     "tsBuildInfoFile": ".cache/tsconfig.tsbuildinfo"

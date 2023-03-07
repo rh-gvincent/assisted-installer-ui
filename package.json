@@ -7,7 +7,7 @@
     "i18next": "^20.4.0",
     "i18next-parser": "^3.3",
     "prettier": "2.8.4",
-    "rimraf": "^4.3.0",
+    "rimraf": "^4.3.1",
     "sw2dts": "^2.6.3",
     "typescript": "4.9.5"
   },
@@ -20,7 +20,7 @@
     "@types/react-dom": "<17.0.30"
   },
   "scripts": {
-    "clean": "rm -rf {apps,libs}/*/{node_modules,build,.cache} node_modules",
+    "clean:all": "yarn workspaces foreach -v run clean",
     "update-api": "scripts/update-api.sh libs/ui-lib/lib/common/api/swagger.yaml libs/ui-lib/lib/common/api/types.ts",
     "i18n": "scripts/i18n.sh"
   },

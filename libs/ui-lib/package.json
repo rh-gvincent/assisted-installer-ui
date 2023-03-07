@@ -41,7 +41,7 @@
     "@types/uuid": "^8.0.0",
     "@types/yup": "^0.26.9",
     "dpdm": "^3.10.0",
-    "rimraf": "^4.3.0",
+    "rimraf": "^4.3.1",
     "typescript": "^4.9.5"
   },
   "engines": {
@@ -51,23 +51,21 @@
     ".": {
       "development": "./lib/index.ts",
       "types": "./@types/index.d.ts",
-      "default": "./lib/index.js"
+      "default": "./build/index.js"
     },
     "./cim": {
       "development": "./lib/cim/index.ts",
       "types": "./@types/cim/index.d.ts",
-      "default": "./lib/cim/index.js"
+      "default": "./build/cim/index.js"
     },
     "./ocm": {
       "development": "./lib/ocm/index.ts",
       "types": "./@types/ocm/index.d.ts",
-      "default": "./lib/ocm/index.js"
+      "default": "./build/ocm/index.js"
     }
   },
   "files": [
-    "lib",
-    "!lib/**/*.ts",
-    "!lib/**/*.tsx",
+    "build",
     "@types"
   ],
   "keywords": [
@@ -113,11 +111,12 @@
     "url": "https://github.com/openshift-assisted/assisted-ui-lib.git"
   },
   "scripts": {
-    "build": "tsc --build --verbose",
-    "clean": "tsc --build --clean && yarn run rimraf @types .cache",
+    "build": "tsc --build",
+    "clean": "yarn rimraf build .cache @types",
+    "copy:css": "rsync -R lib/./**/*.css build",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./lib/index.ts",
     "yalc:push": "yalc push --changed",
-    "watch": "toolbox watch --dir=lib --ignore='!lib/@types' --ignore='/\\.(jsx?|d\\.ts|map)$/' 'yarn tsc --build --verbose' 'yalc push --changed'"
+    "watch": "toolbox watch --dir=lib --ignore='!lib/@types' --ignore='/\\.(jsx?|d\\.ts|map)$/' 'yarn build' 'yarn copy:css' 'yarn yalc:push'"
   },
   "typesVersions": {
     "*": {

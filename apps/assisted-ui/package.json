@@ -34,14 +34,15 @@
     "@types/react-dom": "<17.0.30",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react-swc": "^3.0.1",
+    "rimraf": "^4.3.1",
     "vite": "^4.0.0",
     "vite-plugin-environment": "^1.1.3"
   },
   "license": "Apache-2.0",
-  "name": "assisted-ui",
+  "name": "@openshift-assisted/assisted-ui",
   "private": true,
   "scripts": {
-    "clean": "rm -rf node_modules build",
+    "clean": "yarn rimraf node_modules build",
     "build": "vite build -c vite.config.ts",
     "preview": "vite preview -c vite.config.ts",
     "serve": "vite serve -c vite.config.ts"
