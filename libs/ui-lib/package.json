@@ -115,7 +115,7 @@
     "clean": "tsc --build --clean && yarn run rimraf @types .cache",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./lib/index.ts",
     "yalc:push": "yalc push --changed",
-    "watch": "toolbox watch 'yarn tsc --build --verbose' 'yalc push --changed'"
+    "watch": "toolbox watch --dir=lib --ignore='!lib/@types' --ignore='/\\.(jsx?|d\\.ts|map)$/' 'yarn tsc --build --verbose' 'yalc push --changed'"
   },
   "typesVersions": {
     "*": {
