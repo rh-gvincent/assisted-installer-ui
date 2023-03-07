@@ -66,6 +66,8 @@
   },
   "files": [
     "lib",
+    "!lib/**/*.ts",
+    "!lib/**/*.tsx",
     "@types"
   ],
   "keywords": [
