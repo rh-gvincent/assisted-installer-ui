@@ -21,8 +21,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "clean": "echo 'All clean here...'"
-  },
   "type": "module"
 }

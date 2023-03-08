@@ -111,12 +111,11 @@
     "url": "https://github.com/openshift-assisted/assisted-ui-lib.git"
   },
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build && rsync -R lib/./**/*.css build",
     "clean": "yarn rimraf build .cache @types",
-    "copy:css": "rsync -R lib/./**/*.css build",
     "check:circular": "dpdm --warning false --tree false --exit-code circular:1 ./lib/index.ts",
     "yalc:push": "yalc push --changed",
-    "watch": "toolbox watch --dir=lib --ignore='!lib/@types' --ignore='/\\.(jsx?|d\\.ts|map)$/' 'yarn build' 'yarn copy:css' 'yarn yalc:push'"
+    "watch": "toolbox watch --dir=lib --ignore='!lib/@types' --ignore='/\\.(jsx?|d\\.ts|map)$/' 'yarn build' 'yarn yalc:push'"
   },
   "typesVersions": {
     "*": {

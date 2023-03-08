@@ -20,6 +20,7 @@
     "@types/react-dom": "<17.0.30"
   },
   "scripts": {
+    "build:all": "yarn workspaces foreach -v --topological-dev run build",
     "clean:all": "yarn workspaces foreach -v run clean",
     "update-api": "scripts/update-api.sh libs/ui-lib/lib/common/api/swagger.yaml libs/ui-lib/lib/common/api/types.ts",
     "i18n": "scripts/i18n.sh"
