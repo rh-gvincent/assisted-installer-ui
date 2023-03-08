@@ -1,14 +1,9 @@
 {
-  "name": "@openshift-assisted/locales",
-  "version": "1.0.1",
-  "description": "Locales for the Assisted Installer UI library",
-  "repository": {
-    "directory": "libs/locales",
-    "type": "git",
-    "url": "https://github.com/openshift-assisted/assisted-ui-lib"
-  },
   "author": "Red Hat",
-  "license": "Apache-2.0",
+  "description": "Locales for the Assisted Installer UI library",
+  "devDependencies": {
+    "@openshift-assisted/toolbox": "workspace:*"
+  },
   "exports": {
     "./en/translation.json": "./lib/en/translation.json",
     "./ja/translation.json": "./lib/ja/translation.json",
@@ -18,8 +13,19 @@
   "files": [
     "lib"
   ],
+  "license": "Apache-2.0",
+  "name": "@openshift-assisted/locales",
   "publishConfig": {
     "access": "public"
   },
-  "type": "module"
+  "repository": {
+    "directory": "libs/locales",
+    "type": "git",
+    "url": "https://github.com/openshift-assisted/assisted-ui-lib"
+  },
+  "scripts": {
+    "watch": "toolbox watch --dir=lib 'yalc push --changed'"
+  },
+  "type": "module",
+  "version": "1.0.1"
 }

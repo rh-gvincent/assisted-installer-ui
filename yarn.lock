@@ -316,6 +316,8 @@ __metadata:
 "@openshift-assisted/locales@workspace:*, @openshift-assisted/locales@workspace:libs/locales":
   version: 0.0.0-use.local
   resolution: "@openshift-assisted/locales@workspace:libs/locales"
+  dependencies:
+    "@openshift-assisted/toolbox": "workspace:*"
   languageName: unknown
   linkType: soft
 
