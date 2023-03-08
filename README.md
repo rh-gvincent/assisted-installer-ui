@@ -13,11 +13,13 @@ in December 2020.
 ## Install
 
 ```bash
-npm install --save openshift-assisted-ui-lib
+npm install --save @openshift-assisted/ui-lib
+```
 
 or
 
-yarn add openshift-assisted-ui-lib
+```
+yarn add @openshift-assisted/ui-lib
 ```
 
 ## Development
@@ -26,9 +28,9 @@ yarn add openshift-assisted-ui-lib
 
 This project depends on the following package
 
-- ```bash
-  sudo dnf install -y inotify-tools
-  ```
+```bash
+sudo dnf install -y inotify-tools
+```
 
 ### Instructions
 
@@ -38,26 +40,69 @@ You can use the following steps in order to set up your dev environment.
 2. Create your own fork of this repo and `git clone` it.
    - ```bash
      cd ~/Projects
-     git clone https://github.com/openshift-assisted/assisted-ui-lib.git
+     git clone https://github.com/<username>/assisted-ui-lib.git
      ```
 3. Install the project dependencies:
    - ```bash
-     yarn --cwd=./assisted-ui-lib/ install
+     yarn install
      ```
-4. Fork and clone these projects too, they act as the main app:
-   - [assisted-ui](https://github.com/openshift-assisted/assisted-ui) (a light-weight stand-alone
-     app consuming this project),
-   - [uhc-portal](https://gitlab.cee.redhat.com/service/uhc-portal.git) (the full OCM app, GitLab
-     access needed).
-5. These scripts start the project in watch mode:
+4. Create a `apps/assisted-ui/.env.development.local` file and add the Assisted Installer API url
+   - ```ini
+     AIUI_APP_API_URL=http://<host-ip>:6008
+     ```
+5. Start the Assisted Installer Ui application
    - ```bash
-     # Watches for changes in the `/src` folder and bundles the files into `/dist` folder
-     yarn start
-     # Synchronizes `/dist` with `node_modules/openshift-assisted-ui-lib/` folder in .
-     yarn sync-dist
+     cd apps/assisted-ui
+     yarn serve
      ```
-6. This project uses the `assisted-ui` project to ease the development experience outside OCM (aka
-   `uhc-portal`), follow the instructions in those projects in order to access the app's UI.
+6. Open http://127.0.0.1:5173/
+
+### UHC portal
+
+Assisted Installer UI is integrated in [uhc-portal](https://gitlab.cee.redhat.com/service/uhc-portal.git) (the full OCM app, GitLab access needed).
+
+Use this environnement if you want to test the integration of ui-lib in uhc-portal. For development purposes prefer the use of assisted-ui application.
+
+4. [Install yalc on your system](https://github.com/wclr/yalc#installation). yalc simulate the yarn publish workflow without publishing our packages to the remote registry.
+
+   - ```bash
+     yalc --version
+     ```
+
+5. In one terminal run ui-lib in watch mode. It will build and publish `@openshift-assisted/ui-lib` packages everytime you make a change.
+
+   - ```bash
+     cd libs/ui-lib
+     yarn watch
+     ```
+
+6. In another terminal, fork and clone [uhc-portal](https://gitlab.cee.redhat.com/service/uhc-portal.git):
+
+   - ```bash
+      cd ~/Projects
+      git clone https://gitlab.cee.redhat.com/<username>/uhc-portal.git
+     ```
+
+7. The first time, install npm dependencies and link `@openshift-assisted/ui-lib` and `@openshift-assisted/locales` using yalc. You can skip this after. The watcher on ui-lib will update the packages for you.
+
+   - ```bash
+      cd uhc-portal
+      yarn install
+      yalc link @openshift-assisted/ui-lib
+      yalc link @openshift-assisted/locales
+     ```
+
+8. Now you can start uhc-portal. Please follow the [uhc-portal README](https://gitlab.cee.redhat.com/service/uhc-portal/-/blob/master/README.md)
+
+   - ```bash
+      yarn start
+     ```
+
+9. Visit https://ENV.foo.redhat.com:1337/openshift/assisted-installer/clusters/~new
+
+### CIM
+
+    todo
 
 ## Publish
 
