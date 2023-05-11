@@ -106,4 +106,6 @@ jobs:
           working-directory: ./libs/integration-tests-ocm
           browser: chrome
           config-file: cypress.config.js
+          wait-on: 'http://localhost:4173'
+          wait-on-timeout: 120
           start: yarn --cwd=../../ preview:assisted-ui

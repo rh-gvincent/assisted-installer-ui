@@ -49,7 +49,7 @@
     "build": "vite build -c vite.config.ts",
     "check_types": "yarn run -T tsc --noEmit",
     "clean": "yarn run -T rimraf node_modules build",
-    "preview": "vite preview -c vite.config.ts",
+    "preview": "vite preview -c vite.config.ts --host 0.0.0.0",
     "serve": "vite serve -c vite.config.ts"
   },
   "type": "module",
