@@ -42,6 +42,5 @@ module.exports = defineConfig({
     supportFile: './src/support/index.ts',
     baseUrl: 'http://localhost:4173',
     excludeSpecPattern: [],
-    experimentalRunAllSpecs: true,
   },
 });
