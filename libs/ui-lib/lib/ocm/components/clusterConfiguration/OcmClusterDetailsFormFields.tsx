@@ -66,6 +66,83 @@ const BaseDnsHelperText = ({ name, baseDnsDomain }: { name?: string; baseDnsDoma
   </>
 );
 
+
+const versions: OpenshiftVersionOptionType[] = [{
+  label: "4.11.1",
+  value: "4.11.1",
+  supportLevel: "production",
+  default: true,
+  version: "4.11",
+  cpuArchitectures: []
+}];
+export const _OcmClusterDetailsFormFields = () => {
+  const { values } = useFormikContext<ClusterDetailsValues>();
+  const { name, baseDnsDomain, highAvailabilityMode, useRedHatDnsService } = values;
+  const nameInputRef = React.useRef<HTMLInputElement>();
+
+  const { t } = useTranslation();
+
+
+
+  React.useEffect(() => {
+    nameInputRef.current?.focus();
+  }, []);
+
+  return (
+    <Form id="wizard-cluster-details__form">
+      <OcmRichInputField
+        ref={nameInputRef}
+        label="Cluster name"
+        name="name"
+        placeholder={true ? '' : 'Enter cluster name'}
+        isRequired
+        richValidationMessages={
+          useRedHatDnsService
+            ? uniqueOcmClusterNameValidationMessages(t)
+            : ocmClusterNameValidationMessages(t)
+        }
+        maxLength={CLUSTER_NAME_MAX_LENGTH}
+      />
+      
+        <OcmCheckboxField
+          name="useRedHatDnsService"
+          label="Use a temporary 60-day domain"
+          helperText="A base domain will be provided for temporary, non-production clusters."
+        />
+      
+     
+        <OcmInputField
+          label="Base domain"
+          name="baseDnsDomain"
+          helperText={<BaseDnsHelperText name={name} baseDnsDomain={baseDnsDomain} />}
+          placeholder="example.com"
+          isRequired
+        />
+     
+      
+        <OcmOpenShiftVersionSelect versions={versions} />
+      
+      
+      <OcmSNOControlGroup
+        highAvailabilityMode={highAvailabilityMode}
+      />
+
+
+    
+
+      <CustomManifestCheckbox clusterId={''} />
+
+  
+      <DiskEncryptionControlGroup
+        values={values}
+        isDisabled={false}
+        isSNO={isSNO({ highAvailabilityMode })}
+      />
+    </Form>
+  );
+};
+
+
 export const OcmClusterDetailsFormFields = ({
   managedDomains = [],
   toggleRedHatDnsService,
