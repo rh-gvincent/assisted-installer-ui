@@ -30,7 +30,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       return pluginsConfig(on, config);
     },
-    specPattern: 'cypress/integration/**/*.cy.{js,jsx,ts,tsx}',
+    specPattern: 'cypress/{integration,component-tests}/**/*.cy.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/index.ts',
     baseUrl: GLOBAL_BASE_URL,
     experimentalRunAllSpecs: true,
