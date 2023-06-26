@@ -9,7 +9,7 @@ import { Form } from '@patternfly/react-core';
 import { InputField } from '@openshift-assisted/ui-lib/ocm';
 import { getMultipleIpAddressValidationSchema } from '../clusterConfiguration/staticIp/commonValidationSchemas';
 
-const InputFieldWrapper = ({ initialValue }: { initialValue: string }) => {
+const InputFieldWrapper = ({ initialValue, isDisabled }: { initialValue: string, isDisabled:boolean }) => {
   const validationSchema = React.useMemo<yup.Schema<{ dns: string }>>(() => {
     return yup.object().shape({
       dns: getMultipleIpAddressValidationSchema(),
@@ -30,6 +30,7 @@ const InputFieldWrapper = ({ initialValue }: { initialValue: string }) => {
           name={`dns`}
           data-testid={`dns`}
           helperText={'List of your DNS server addresses, separated by commas.'}
+          isDisabled={isDisabled}
         />
       </Form>
     </Formik>
@@ -47,5 +48,6 @@ type Story = StoryObj<typeof InputFieldWrapper>;
 export const DNSInputFieldWrapper: Story = {
   args: {
     initialValue: '',
+    isDisabled:false
   },
 };
