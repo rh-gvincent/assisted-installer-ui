@@ -1,4 +1,4 @@
-context('NameField', () => {
+describe('NameField', () => {
   beforeEach(() => {
     cy.visit(
       'http://localhost:6006/iframe.html?args=&id=richinputfielstory--rich-input-fiel-story&viewMode=story',
