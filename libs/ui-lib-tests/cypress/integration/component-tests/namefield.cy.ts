@@ -6,13 +6,13 @@ describe('NameField', () => {
   });
 
   it('Type invalid character should show two errors in the popover', () => {
-    cy.findByRole('textbox', { name: /name/ }).type('&&&');
+    cy.findByRole('textbox', { name: /name/i , timeout: 12_000}).type('&&&');
     cy.findByRole('dialog', { name: /validation popover/i }).should('exist');
     cy.findByRole('alert', {
-      name: 'Must start and end with a lowercase alphanumeric character',
+      name: 'ai:Start and end with a lowercase letter or a number.',
     }).should('exist');
     cy.findByRole('alert', {
-      name: 'Use lowercase alphanumeric characters, dot (.) or hyphen (-)',
+      name: 'ai:Use lowercase alphanumeric characters or hyphen (-)',
     }).should('exist');
   });
 });

@@ -63,7 +63,12 @@ export const RichValidation: React.FC<RichValidationProps> = ({
         const variant = getHelperTextVariant(richValidationMessages[key], value, error);
         return (
           <HelperTextItem key={key} isDynamic component="li" {...variant}>
-            {richValidationMessages[key]}
+            <span
+              aria-label={richValidationMessages[key]}
+              role={variant.variant === 'error' ? 'alert' : undefined}
+            >
+              {richValidationMessages[key]}
+            </span>
           </HelperTextItem>
         );
       })}
