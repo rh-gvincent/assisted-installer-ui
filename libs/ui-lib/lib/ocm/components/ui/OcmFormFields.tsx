@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import { Checkbox, CheckboxProps, Radio, RadioProps } from '@patternfly/react-core';
-import { selectCurrentClusterPermissionsState } from '../../selectors';
 import {
   CheckboxField,
   CodeField,
@@ -25,22 +23,16 @@ type DisableableField = {
 };
 
 function FormFieldDisabler<T extends DisableableField>(FormComponent: React.ComponentType<T>) {
-  return function WrapperHoc(props: T) {
-    const { isViewerMode } = useSelector(selectCurrentClusterPermissionsState);
-
-    const isDisabled = props.isDisabled || isViewerMode;
-    return <FormComponent {...props} isDisabled={isDisabled} />;
+  return function WrapperHoc(props: T) {    
+    return <FormComponent {...props} isDisabled={false} />;
   };
 }
 
 export function RefFormFieldDisabler<T extends DisableableField>(
   FormComponent: React.ComponentType<T>,
 ) {
-  return React.forwardRef(function useInputRef(props: T, ref) {
-    const { isViewerMode } = useSelector(selectCurrentClusterPermissionsState);
-
-    const isDisabled: boolean = props.isDisabled || isViewerMode;
-    return <FormComponent ref={ref} {...props} isDisabled={isDisabled} />;
+  return React.forwardRef(function useInputRef(props: T, ref) {    
+    return <FormComponent ref={ref} {...props} isDisabled={false} />;
   });
 }
 
