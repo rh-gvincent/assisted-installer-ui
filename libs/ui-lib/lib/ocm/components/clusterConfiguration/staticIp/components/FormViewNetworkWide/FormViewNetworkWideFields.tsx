@@ -55,6 +55,17 @@ const hostsConfiguredAlert = (
   />
 );
 
+
+export const DnsField = () => 
+  (<OcmInputField
+  isRequired
+  label="DNS"
+  name={`dns`}
+  data-testid={`dns`}
+  helperText={'List of your DNS server addresses, separated by commas.'}
+  />);
+
+
 const MachineNetwork: React.FC<{ fieldName: string; protocolVersion: ProtocolVersion }> = ({
   fieldName,
   protocolVersion,
@@ -277,13 +288,7 @@ export const FormViewNetworkWideFields = ({ hosts }: { hosts: FormViewHost[] }) 
         </div>
       )}
 
-      <OcmInputField
-        isRequired
-        label="DNS"
-        name={`dns`}
-        data-testid={`dns`}
-        helperText={'List of your DNS server addresses, separated by commas.'}
-      />
+      <DnsField/>
 
       {getShownProtocolVersions(values.protocolType).map((protocolVersion) => (
         <FormGroup

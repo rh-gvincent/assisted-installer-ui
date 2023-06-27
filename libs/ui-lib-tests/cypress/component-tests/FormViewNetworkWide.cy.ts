@@ -1,20 +1,18 @@
+import { commonActions } from "../views/common";
 import { staticIpPage } from "../views/staticIpPage";
 
 describe('Network wide configuration component test', () => {
   beforeEach(() => {
     cy.visit(
-      'http://localhost:6006/iframe.html?args=&id=networkwide--network-wide&viewMode=story',
-    );
-    cy.wait(3000);
+      `http://localhost:6006/iframe.html?
+args=&id=networkwide--network-wide&viewMode=story`,
+    );    
   });
-  it('ipv6 fields should only appear after clicking on dual stack', () => {
-    staticIpPage.networkWideMachineNetwork('ipv6').should("not.exist");
-    staticIpPage.networkWideMachineGateway('ipv6').should("not.exist");
-    staticIpPage.dualStackNetworking().click();
-    cy.wait(3000);
-    staticIpPage.networkWideMachineNetwork('ipv6').should("exist");
-    staticIpPage.networkWideMachineGateway('ipv6').should("exist");
-    cy.wait(2000);
+  it('mixed ipv4 and ipv6 should only be enabled in dual stack', () => {
+    const dns = "192.168.1.46,cf72:7c8c:484d:033d:37d1:1696:8f89:632f";
+    staticIpPage.networkWideDns().type(dns);    
+    commonActions.getDNSErrorMessage().should("exist");        
+    staticIpPage.dualStackNetworking().click();    
+    commonActions.getDNSErrorMessage().should("not.exist");        
   });
-
 });

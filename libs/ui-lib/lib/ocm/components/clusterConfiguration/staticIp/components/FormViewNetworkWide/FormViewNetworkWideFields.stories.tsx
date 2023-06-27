@@ -9,7 +9,8 @@ import { FormViewNetworkWideFields } from './FormViewNetworkWideFields';
 import { FormViewNetworkWideValues } from '../../data/dataTypes';
 import { networkWideValidationSchema } from './formViewNetworkWideValidationSchema';
 
-const FormViewNetworkWideFieldsWrapper = ({ initialValues }: { initialValues: FormViewNetworkWideValues }) => {
+const FormViewNetworkWideFieldsWrapper = 
+({ initialValues }: { initialValues: FormViewNetworkWideValues }) => {
   return (
     <Formik<FormViewNetworkWideValues>
       initialValues={initialValues}
