@@ -7,15 +7,15 @@ import { Form } from '@patternfly/react-core';
 
 import { FormViewNetworkWideFields } from './FormViewNetworkWideFields';
 import { FormViewNetworkWideValues } from '../../data/dataTypes';
+import { networkWideValidationSchema } from './formViewNetworkWideValidationSchema';
 
-const Wrapper = ({ initialValues }: { initialValues: FormViewNetworkWideValues }) => {
-
+const FormViewNetworkWideFieldsWrapper = ({ initialValues }: { initialValues: FormViewNetworkWideValues }) => {
   return (
     <Formik<FormViewNetworkWideValues>
       initialValues={initialValues}
       onSubmit={console.log}
       validateOnMount
-      
+      validationSchema={networkWideValidationSchema}
     >
       <Form>
         <FormViewNetworkWideFields hosts={[]}/>        
@@ -24,13 +24,13 @@ const Wrapper = ({ initialValues }: { initialValues: FormViewNetworkWideValues }
   );
 };
 
-const meta: Meta<typeof Wrapper> = {
+const meta: Meta<typeof FormViewNetworkWideFieldsWrapper> = {
   title: 'NetworkWide',
-  component: Wrapper,
+  component: FormViewNetworkWideFieldsWrapper,
 };
 
 export default meta;
-type Story = StoryObj<typeof Wrapper>;
+type Story = StoryObj<typeof FormViewNetworkWideFieldsWrapper>;
 
 export const NetworkWide: Story = {
   args: {
