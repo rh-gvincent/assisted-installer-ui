@@ -2,22 +2,22 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: frontend-starter-app
+  name: assisted-installer-app
 objects:
   - apiVersion: cloud.redhat.com/v1alpha1
     kind: Frontend
     metadata:
-      name: frontend-starter-app
+      name: assisted-installer-app
     spec:
       API:
         versions:
           - v1
       envName: ${ENV_NAME}
-      title: Starter App
-      deploymentRepo: https://github.com/RedHatInsights/frontend-starter-app
+      title: Assisted Installer
+      deploymentRepo: https://github.com/openshift-assisted/assisted-installer-ui
       frontend:
         paths:
-          - /apps/frontend-starter-app
+          - /apps/assisted-installer-app
       image: ${IMAGE}:${IMAGE_TAG}
 
       module:
@@ -26,7 +26,7 @@ objects:
           - id: 'overview'
             module: './RootApp'
             routes:
-              - pathname: /staging/starter
+              - pathname: /openshift/assisted-installer-app
 
 parameters:
   - name: ENV_NAME
@@ -34,4 +34,4 @@ parameters:
   - name: IMAGE_TAG
     required: true
   - name: IMAGE
-    value: quay.io/cloudservices/frontend-starter-app
+    value: quay.io/app-sre/assisted-installer-app

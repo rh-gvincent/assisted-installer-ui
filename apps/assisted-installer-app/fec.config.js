@@ -1,5 +1,5 @@
 module.exports = {
-  appUrl: '/staging/starter',
+  appUrl: '/openshift/assisted-installer-app',
   debug: true,
   useProxy: true,
   proxyVerbose: true,
@@ -9,7 +9,7 @@ module.exports = {
    * If the dash character is present, you will have add a camelCase version of it to the sassPrefix.
    * If it does not contain the dash character, remove this configuration.
    */
-  sassPrefix: '.frontend-starter-app, .frontendStarterApp',
+  sassPrefix: '.assisted-installer-app, .assistedInstallerApp',
   /**
    * Change to false after your app is registered in configuration files
    */
