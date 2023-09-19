@@ -2434,7 +2434,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@patternfly/react-component-groups@npm:^1.0.13":
+"@patternfly/react-component-groups@npm:^1.0.17":
   version: 1.0.17
   resolution: "@patternfly/react-component-groups@npm:1.0.17"
   dependencies:
@@ -2834,10 +2834,10 @@ __metadata:
   linkType: hard
 
 "@redhat-cloud-services/frontend-components@npm:*":
-  version: 4.0.8
-  resolution: "@redhat-cloud-services/frontend-components@npm:4.0.8"
+  version: 4.0.9
+  resolution: "@redhat-cloud-services/frontend-components@npm:4.0.9"
   dependencies:
-    "@patternfly/react-component-groups": ^1.0.13
+    "@patternfly/react-component-groups": ^1.0.17
     "@redhat-cloud-services/frontend-components-utilities": ^4.0.0
     "@redhat-cloud-services/types": ^0.0.24
     "@scalprum/core": ^0.5.1
@@ -2855,7 +2855,7 @@ __metadata:
     react-dom: ^18.2.0
     react-redux: ">=7.0.0"
     react-router-dom: ^5.0.0 || ^6.0.0
-  checksum: af988c7cdbd67c1615545526304fbbb5079ba31cc521c6c2ef6d539fb37d180a395b992cb52182c4ae411410023f3d46d6dcc07edeb0c897c542e22ba04669c5
+  checksum: d118d24cc494ed0f5e99e635acc9520f23b2d073fef540215b1861f8b23a282bd416f6181c8c32d437277968b93d158653bea5441c4531fc1da438a7a412864f
   languageName: node
   linkType: hard
 

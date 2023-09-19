@@ -1,24 +1,13 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import {
-  Button,
-  Spinner,
-  Stack,
-  StackItem,
-  Title,
-} from '@patternfly/react-core';
+import { Button, Spinner, Stack, StackItem, Title } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
-import {
-  PageHeader,
-  PageHeaderTitle,
-} from '@redhat-cloud-services/frontend-components/PageHeader';
+import { PageHeader, PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
-const SampleComponent = lazy(
-  () => import('../../Components/SampleComponent/sample-component')
-);
+const SampleComponent = lazy(() => import('../../Components/SampleComponent/sample-component'));
 
 import './sample-page.scss';
 import AppLink from '../../Components/AppLink';
@@ -44,26 +33,24 @@ const SamplePage = () => {
         variant: 'success',
         title: 'Notification title',
         description: 'notification description',
-      })
+      }),
     );
   };
 
   return (
     <React.Fragment>
       <PageHeader>
-        <PageHeaderTitle title="Sample Insights App" />
+        <PageHeaderTitle title="Assisted Installer application" />
         <p> This is page header text </p>
       </PageHeader>
       <Main>
         <Stack hasGutter>
           <StackItem>
             <Title headingLevel="h2" size="3xl">
-              {' '}
-              Alerts{' '}
+              Alerts
             </Title>
             <Button variant="primary" onClick={handleAlert}>
-              {' '}
-              Dispatch alert{' '}
+              Dispatch alert
             </Button>
           </StackItem>
           <StackItem>
@@ -75,17 +62,14 @@ const SamplePage = () => {
             <Stack hasGutter>
               <StackItem>
                 <Title headingLevel="h2" size="3xl">
-                  {' '}
-                  Links{' '}
+                  Links
                 </Title>
               </StackItem>
               <StackItem>
                 <AppLink to="/oops"> How to handle 500s in app </AppLink>
               </StackItem>
               <StackItem>
-                <AppLink to="/no-permissions">
-                  How to handle 403s in app
-                </AppLink>
+                <AppLink to="/no-permissions">How to handle 403s in app</AppLink>
               </StackItem>
             </Stack>
           </StackItem>
